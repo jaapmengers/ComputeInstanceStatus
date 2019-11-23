@@ -55,15 +55,10 @@ class PreferencesViewController: NSViewController, NSTextFieldDelegate {
       return
     }
     
-    do {
-      self.serviceAccountFileBookmark = url
-    } catch {
-      print("Don't handle this for now")
-    }
+    self.serviceAccountFileBookmark = url
   }
   
   @IBAction func didTouchTestConnection(_ sender: Any) {
-    var isStale = false
     guard
       let serviceAccountFileBookmark = serviceAccountFileBookmark,
       let zone = zone,
@@ -73,7 +68,7 @@ class PreferencesViewController: NSViewController, NSTextFieldDelegate {
     self.imageView.isHidden = true
     progressIndicator.startAnimation(nil)
     
-    GCPService.getInstanceState(serviceAccountFileBookmark.path, zone, instanceName)
+    GCPService.runCommand(serviceAccountFileBookmark.path, zone, instanceName)
       .then { [weak self] state in
         self?.imageView.isHidden = false
         self?.imageView.image = NSImage(named: "NSStatusAvailable")

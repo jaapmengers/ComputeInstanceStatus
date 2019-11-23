@@ -11,7 +11,7 @@ import Promissum
 
 class GCPService {
   
-  static func getInstanceState(_ serviceAccountPath: String, _ zone: String, _ instanceName: String) -> Promise<Status, Error> {
+  static func runCommand(_ serviceAccountPath: String, _ zone: String, _ instanceName: String, _ command: String = "status") -> Promise<Status, Error> {
     guard
       let cliPath = Bundle.main.path(forResource: "index-macos", ofType: nil)
       else {
@@ -23,7 +23,7 @@ class GCPService {
     DispatchQueue.global(qos: .background).async {
       let task = Process()
       task.launchPath = cliPath
-      task.arguments = ["status", "-z", zone, "-i", instanceName]
+      task.arguments =  [command, "-z", zone, "-i", instanceName]
       task.environment = ["GOOGLE_APPLICATION_CREDENTIALS": serviceAccountPath]
       
       let pipe = Pipe()
