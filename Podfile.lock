@@ -1,0 +1,18 @@
+PODS:
+  - Promissum (4.0.0):
+    - Promissum/Core (= 4.0.0)
+  - Promissum/Core (4.0.0)
+
+DEPENDENCIES:
+  - Promissum
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Promissum
+
+SPEC CHECKSUMS:
+  Promissum: cdc56cbdb15e134eaccbd25d88041e75f96aac4c
+
+PODFILE CHECKSUM: eb8aba5fcfcfcc6461b24f2b4e68dff4a9b58719
+
+COCOAPODS: 1.8.4
